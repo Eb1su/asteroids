@@ -4,6 +4,10 @@ from player import Player
 
 def main():
     pygame.init()
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
@@ -18,10 +22,13 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        player.update(dt)
-        
+        updatable.update(dt)
+
         pygame.Surface.fill(screen, "black")
-        player.draw(screen)
+        
+        for obj in drawable:
+            obj.draw(screen)
+            
         pygame.display.flip()
         dt = frame_rate.tick(60) / 1000
 
