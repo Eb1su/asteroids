@@ -44,7 +44,8 @@ def main():
             
             for shot in shots:
                 if shot.collision_check(ast) == True:
-                    ast.kill()
+                    shot.kill()
+                    ast.split()
         
 
         pygame.Surface.fill(screen, "black")
